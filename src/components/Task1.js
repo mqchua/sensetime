@@ -5,17 +5,15 @@ import ReactSession from 'react-client-session';
 
 var data;
 
-
+// using sessions to store added data
 if (sessionStorage.getItem('myData') === null) {
   data = PostData.table;
 
 } else {
   data = JSON.parse(sessionStorage.getItem('myData'));
-  console.log(JSON.parse(sessionStorage.getItem('myData')));
-  console.log('Hello');
+  // console.log(JSON.parse(sessionStorage.getItem('myData')));
+  // console.log('Hello');
 }
-
-// var data = (sessionStorage.getItem('myData') === null) ? PostData.table : sessionStorage.getItem('myData');
 
 const columns = [
   {
@@ -40,31 +38,26 @@ const columns = [
   },
 ];
 
-function renderMain() {
-        <div>HELLo</div>
-};
-
 
 export default function Task1() {
 
-    const [inputField , setInputField] = useState({
-        id: '',
-    });
-
-    const inputsHandler = (e) =>{
-        setInputField( {[e.target.name]: e.target.value} )
-    };
+    const [id, setId] = useState();
+    const [type, setType] = useState();
+    const [name, setName] = useState();
+    const [ppu, setPpu] = useState();
+    const [student, setStudent] = useState();
 
     // prevent submitting
     const submitButton = (event) =>{
-        alert(inputField.id);
-        // event.preventDefault();
+
+        alert('Record added.');
+
         var dest = {
-                "id": "2000",
-                "type": "hello",
-                "name": "Cake1",
-                "ppu": 0.5,
-                "student": "excellence"
+                "id": id,
+                "type": type,
+                "name": name,
+                "ppu": ppu,
+                "student": student
               };
         data.push(dest);
         sessionStorage.setItem('myData', JSON.stringify(data));
@@ -86,24 +79,56 @@ export default function Task1() {
           }}
         />
 
+        <br></br>
+        <br></br>
+
         <form>
 
-        <br></br>
-        <br></br>
+          <input
+            type="text"
+            name="id"
+            onChange={e => setId(e.target.value)}
+            placeholder="id"
+            value={id}/> <br></br>
 
           <input
-            type="id"
-            name="id"
-            onChange={inputsHandler}
-            placeholder="id"
-            value={inputField.id}/>
+            type="text"
+            name="type"
+            onChange={e => setType(e.target.value)}
+            placeholder="type"
+            value={type}/> <br></br>
+
+          <input
+            type="text"
+            name="name"
+            onChange={e => setName(e.target.value)}
+            placeholder="name"
+            value={name}/> <br></br>
+
+          <input
+            type="text"
+            name="ppu"
+            onChange={e => setPpu(e.target.value)}
+            placeholder="ppu"
+            value={ppu}/> <br></br>
+
+          <input
+            type="text"
+            name="student"
+            onChange={e => setStudent(e.target.value)}
+            placeholder="student"
+            value={student}/>
 
           <br></br>
           <br></br>
           <button onClick={submitButton}>Add</button>
           <br></br>
           <br></br>
-          <div>{inputField.id}</div>
+          <div>{id}</div>
+          <div>{type}</div>
+          <div>{name}</div>
+          <div>{ppu}</div>
+          <div>{student}</div>
 
         </form>
 

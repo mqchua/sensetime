@@ -22,7 +22,7 @@ const useStyles = makeStyles(theme => ({
     display:"flex",
     justifyContent: "center"
   },
-  bgColor1: {
+  bgColor: {
     backgroundColor: "#FFFAF2",
     boxShadow: "none",
     color: "#000000",
@@ -36,7 +36,7 @@ function App() {
 
     <Router position="static">
 
-      <div className= {classes.bgColor1}>
+      <div className= {classes.bgColor}>
         <div className={classes.divCenter}>
           <Toolbar className={classes.container}>
               <Grid container justify="center" className={classes.outline}>

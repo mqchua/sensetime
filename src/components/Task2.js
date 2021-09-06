@@ -1,6 +1,6 @@
 import React from 'react';
-import TreeData from '../assets/tree.json';
 import JSONTree from 'react-json-tree'
+import TreeData from '../assets/tree.json';
 const json = TreeData;
 
 const theme = {
@@ -28,8 +28,8 @@ export default function Task2() {
 
   return (
       <div>
-      <h1>Task 2</h1>
-      <JSONTree theme={theme} data={json} />
+        <h1>Task 2</h1>
+        <JSONTree theme={theme} data={json} />
       </div>
   );
 }

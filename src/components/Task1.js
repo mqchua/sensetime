@@ -11,8 +11,6 @@ if (sessionStorage.getItem('myData') === null) {
 
 } else {
   data = JSON.parse(sessionStorage.getItem('myData'));
-  // console.log(JSON.parse(sessionStorage.getItem('myData')));
-  // console.log('Hello');
 }
 
 const columns = [
@@ -47,7 +45,7 @@ export default function Task1() {
     const [ppu, setPpu] = useState();
     const [student, setStudent] = useState();
 
-    // prevent submitting
+
     const submitButton = (event) =>{
 
         alert('Record added.');
@@ -75,7 +73,7 @@ export default function Task1() {
           title="Table"
           options={{
             paging:true,
-            pageSize:5,       // make initial page size
+            pageSize:5,
           }}
         />
 
@@ -124,11 +122,11 @@ export default function Task1() {
           <button onClick={submitButton}>Add</button>
           <br></br>
           <br></br>
-          <div>{id}</div>
+{/*          <div>{id}</div>
           <div>{type}</div>
           <div>{name}</div>
           <div>{ppu}</div>
-          <div>{student}</div>
+          <div>{student}</div>*/}
 
         </form>
 
@@ -140,14 +138,3 @@ export default function Task1() {
       </div>
   )
 };
-
-
-
-{/*          <label for="type">type:</label><br></br>
-          <input type="text" id="type" name="type" defaultValue=""/><br></br>
-          <label for="name">name:</label><br></br>
-          <input type="text" id="name" name="name" defaultValue=""/><br></br>
-          <label for="ppu">ppu:</label><br></br>
-          <input type="text" id="ppu" name="ppu" defaultValue=""/><br></br>
-          <label for="student">student:</label><br></br>
-          <input type="text" id="student" name="student" defaultValue=""/><br></br>*/}

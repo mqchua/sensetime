@@ -3,24 +3,17 @@ import PostData from '../assets/sample.json';
 import MaterialTable from 'material-table';
 import ReactSession from 'react-client-session';
 
-var data = PostData.table;
-
-var output = JSON.parse(sessionStorage.getItem('myData'));
-
-// output = eval('({' + output + '})');
-
-console.log(data);
-console.log(output);
+var data;
 
 
-// if (sessionStorage.getItem('myData') === null) {
-//   data = PostData.table;
+if (sessionStorage.getItem('myData') === null) {
+  data = PostData.table;
 
-// } else {
-//   data = JSON.parse(sessionStorage.getItem(0));
-//   console.log(JSON.parse(sessionStorage.getItem('myData')));
-//   console.log('Hello');
-// }
+} else {
+  data = JSON.parse(sessionStorage.getItem('myData'));
+  console.log(JSON.parse(sessionStorage.getItem('myData')));
+  console.log('Hello');
+}
 
 // var data = (sessionStorage.getItem('myData') === null) ? PostData.table : sessionStorage.getItem('myData');
 

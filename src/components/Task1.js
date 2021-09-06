@@ -1,8 +1,10 @@
 import MaterialTable from 'material-table';
 import React, { useState } from 'react';
 import PostData from '../assets/sample.json';
+import { TextField, Button } from '@material-ui/core';
 
 var data;
+var finalArr = [];
 
 // using sessions to store added data
 if (sessionStorage.getItem('myData') === null) {
@@ -12,13 +14,8 @@ if (sessionStorage.getItem('myData') === null) {
   data = JSON.parse(sessionStorage.getItem('myData'));
 }
 
-// for (var i = 0; i < data.length; i++ ) {
-//   console.log(data[i].ppu);
-// }
-
 // group by ppu
 var groups = data.map(function(value, index) {return value['ppu']});
-// console.log("Groups", groups);
 
 // group by number of counts
 const counts = {};
@@ -26,27 +23,21 @@ groups.forEach(ppu => {
   counts[ppu] = (counts[ppu] || 0) + 1
 });
 
-// remove all duplicated
+// remove all duplicates
 var filtered = Object.fromEntries(Object.entries(counts).filter(([k,v]) => v===1));
 filtered = Object.keys(filtered);
 
-// console.log("counts: ", counts);
-console.log("filtered: ", filtered);
 
-var finalArr = []
-
+// add unique obj into finalarr
 for (var i = 0; i < data.length; i++ ) {
   console.log(data[i].ppu);
   for (var x = 0; x<filtered.length; x++ ) {
 
     if ((data[i].ppu).toString() === filtered[x]) {
       finalArr.push(data[i]);
-      console.log('hello');
     }
   }
 }
-
-console.log("Final arr: ", finalArr);
 
 const columns = [
   {
@@ -92,10 +83,10 @@ export default function Task1() {
                 "ppu": ppu,
                 "student": student
               };
+
+        // add data and store in sessions
         data.push(dest);
         sessionStorage.setItem('myData', JSON.stringify(data));
-        console.log(data);
-
     };
 
 
@@ -108,60 +99,50 @@ export default function Task1() {
           title="Table"
           options={{
             paging:true,
-            pageSize:15,
+            pageSize:5,
           }}
         />
 
         <br></br>
         <br></br>
 
-        <form>
+        <form onSubmit={submitButton} autoComplete="off">
 
-          <input
-            type="text"
-            name="id"
+          <TextField required
+            id="id"
             onChange={e => setId(e.target.value)}
-            placeholder="id"
+            label="id"
             value={id}/> <br></br>
 
-          <input
-            type="text"
-            name="type"
+          <TextField required
+            id="type"
             onChange={e => setType(e.target.value)}
-            placeholder="type"
+            label="type"
             value={type}/> <br></br>
 
-          <input
-            type="text"
-            name="name"
+          <TextField required
+            id="name"
             onChange={e => setName(e.target.value)}
-            placeholder="name"
+            label="name"
             value={name}/> <br></br>
 
-          <input
-            type="text"
-            name="ppu"
+          <TextField required
+            id="ppu"
             onChange={e => setPpu(e.target.value)}
-            placeholder="ppu"
+            label="ppu"
             value={ppu}/> <br></br>
 
-          <input
-            type="text"
-            name="student"
+          <TextField required
+            id="student"
             onChange={e => setStudent(e.target.value)}
-            placeholder="student"
+            label="student"
             value={student}/>
 
           <br></br>
           <br></br>
-          <button onClick={submitButton}>Add</button>
+          <Button type="submit" variant="outlined" color="primary">Add</Button>
           <br></br>
           <br></br>
-{/*          <div>{id}</div>
-          <div>{type}</div>
-          <div>{name}</div>
-          <div>{ppu}</div>
-          <div>{student}</div>*/}
 
         </form>
 
@@ -174,19 +155,3 @@ export default function Task1() {
   )
 };
 
-
-
-
-// function hash(o){
-//     return o.ppu;
-// }
-
-// var hashesFound = {};
-
-// data.forEach(function(o){
-//     hashesFound[hash(o)] = o;
-// })
-
-// data = Object.keys(hashesFound).map(function(k){
-//     return hashesFound[k];
-// })

@@ -5,6 +5,25 @@ import ReactSession from 'react-client-session';
 
 var data = PostData.table;
 
+var output = JSON.parse(sessionStorage.getItem('myData'));
+
+// output = eval('({' + output + '})');
+
+console.log(data);
+console.log(output);
+
+
+// if (sessionStorage.getItem('myData') === null) {
+//   data = PostData.table;
+
+// } else {
+//   data = JSON.parse(sessionStorage.getItem(0));
+//   console.log(JSON.parse(sessionStorage.getItem('myData')));
+//   console.log('Hello');
+// }
+
+// var data = (sessionStorage.getItem('myData') === null) ? PostData.table : sessionStorage.getItem('myData');
+
 const columns = [
   {
     title: 'ID',
@@ -28,6 +47,11 @@ const columns = [
   },
 ];
 
+function renderMain() {
+        <div>HELLo</div>
+};
+
+
 export default function Task1() {
 
     const [inputField , setInputField] = useState({
@@ -41,7 +65,7 @@ export default function Task1() {
     // prevent submitting
     const submitButton = (event) =>{
         alert(inputField.id);
-        event.preventDefault();
+        // event.preventDefault();
         var dest = {
                 "id": "2000",
                 "type": "hello",
@@ -49,14 +73,12 @@ export default function Task1() {
                 "ppu": 0.5,
                 "student": "excellence"
               };
-        data = [...data, dest]
-
-
-    };
-
-    function renderMain() {
+        data.push(dest);
+        sessionStorage.setItem('myData', JSON.stringify(data));
+        console.log(data);
 
     };
+
 
     return (
       <div>

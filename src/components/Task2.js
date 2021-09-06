@@ -28,8 +28,8 @@ export default function Task2() {
 
   return (
       <div>
-        <h1>Task 2</h1>
-        <JSONTree theme={theme} data={json} />
+        {/* <h1>Task 2</h1>
+        <JSONTree theme={theme} data={json} /> */}
       </div>
   );
 }

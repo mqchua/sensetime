@@ -1,7 +1,6 @@
-import React, { Component, useState } from 'react';
-import PostData from '../assets/sample.json';
 import MaterialTable from 'material-table';
-import ReactSession from 'react-client-session';
+import React, { useState } from 'react';
+import PostData from '../assets/sample.json';
 
 var data;
 
@@ -12,6 +11,42 @@ if (sessionStorage.getItem('myData') === null) {
 } else {
   data = JSON.parse(sessionStorage.getItem('myData'));
 }
+
+// for (var i = 0; i < data.length; i++ ) {
+//   console.log(data[i].ppu);
+// }
+
+// group by ppu
+var groups = data.map(function(value, index) {return value['ppu']});
+// console.log("Groups", groups);
+
+// group by number of counts
+const counts = {};
+groups.forEach(ppu => {
+  counts[ppu] = (counts[ppu] || 0) + 1
+});
+
+// remove all duplicated
+var filtered = Object.fromEntries(Object.entries(counts).filter(([k,v]) => v===1));
+filtered = Object.keys(filtered);
+
+// console.log("counts: ", counts);
+console.log("filtered: ", filtered);
+
+var finalArr = []
+
+for (var i = 0; i < data.length; i++ ) {
+  console.log(data[i].ppu);
+  for (var x = 0; x<filtered.length; x++ ) {
+
+    if ((data[i].ppu).toString() === filtered[x]) {
+      finalArr.push(data[i]);
+      console.log('hello');
+    }
+  }
+}
+
+console.log("Final arr: ", finalArr);
 
 const columns = [
   {
@@ -69,11 +104,11 @@ export default function Task1() {
         <h1>Task 1</h1>
         <MaterialTable
           columns={columns}
-          data={data}
+          data={finalArr}
           title="Table"
           options={{
             paging:true,
-            pageSize:5,
+            pageSize:15,
           }}
         />
 
@@ -138,3 +173,20 @@ export default function Task1() {
       </div>
   )
 };
+
+
+
+
+// function hash(o){
+//     return o.ppu;
+// }
+
+// var hashesFound = {};
+
+// data.forEach(function(o){
+//     hashesFound[hash(o)] = o;
+// })
+
+// data = Object.keys(hashesFound).map(function(k){
+//     return hashesFound[k];
+// })

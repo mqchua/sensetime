@@ -19,21 +19,22 @@ export default function Task3() {
 
   return (
     <div>
-    <h1>Task 3</h1>
 
-    {/* display books from the API */}
-    {books && (
-      <div className="books">
-
-        {/* loop over the books */}
-        {books.map((book, index) => (
-          <div key={index}>
-            <p>{book.name}</p>
-          </div>
-        ))}
-
-      </div>
-    )}
   </div>
   );
 }
+  //   <h1>Task 3</h1>
+
+  //   {/* display books from the API */}
+  //   {books && (
+  //     <div className="books">
+
+  //       {/* loop over the books */}
+  //       {books.map((book, index) => (
+  //         <div key={index}>
+  //           <p>{book.name}</p>
+  //         </div>
+  //       ))}
+
+  //     </div>
+  //   )}
